@@ -1,7 +1,7 @@
 // Automatically load collection when page loads
 window.addEventListener('load', () => {
     // Replace with your actual GitHub CSV URL
-    const csvUrl = 'https://raw.githubusercontent.com/glad7/glad7.github.io/main/my-cards.csv';
+    const csvUrl = 'https://raw.githubusercontent.com/Glad7/glad7.github.io/refs/heads/main/assets/js/my-cards.csv';
     loadCollection(csvUrl);
 });
 
