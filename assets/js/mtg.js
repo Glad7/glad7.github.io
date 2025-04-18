@@ -5,6 +5,10 @@ window.addEventListener('load', () => {
     loadCollection(csvUrl);
 });
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function loadCollection(csvUrl) {
     try {
         showStatus('Loading collection...');
@@ -50,6 +54,7 @@ async function displayCards(cardNames) {
 async function fetchCardData(cardName) {
     const response = await fetch(`https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}`);
     if (!response.ok) throw new Error('Card not found');
+    sleep(100);
     return response.json();
 }
 
