@@ -9,8 +9,7 @@ async function init() {
     
     // Parse CSV
     const results = Papa.parse(csvData, { header: true });
-    const scryfallIds = results.data.map(row => row.scryfall_id);
-    
+    const scryfallIds = results.data.map(row => row["Scryfall ID"]);
     // Batch fetch card data from Scryfall
     const cardData = await fetchScryfallData(scryfallIds);
     allCards = cardData;
@@ -29,7 +28,7 @@ async function fetchScryfallData(ids) {
     const requests = chunks.map(async chunk => {
         const response = await fetch('https://api.scryfall.com/cards/collection', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'User-Agent': 'mtg-collection/1.0', 'Accept': '*/*'},
             body: JSON.stringify({ identifiers: chunk.map(id => ({ id })) })
         });
         return await response.json();
@@ -64,9 +63,9 @@ function filterCards() {
     const typeFilter = document.getElementById('type-filter').value.toLowerCase();
 
     return allCards.filter(card => {
-        return (card.name.toLowerCase().includes(searchTerm) &&
+        return (card.name.toLowerCase().includes(searchTerm)) &&
                (!colorFilter || card.colors?.includes(colorFilter)) &&
-               (!typeFilter || card.type_line.toLowerCase().includes(typeFilter));
+               (!typeFilter || card.type_line.toLowerCase().includes(typeFilter))
     });
 }
 
