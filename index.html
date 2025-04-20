@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MTG Collection Cube Builder</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Filters -->
+        <div class="filters">
+            <input type="text" id="search" placeholder="Search...">
+            <select id="color-filter">
+                <option value="">Any Color</option>
+                <option value="W">White</option>
+                <option value="U">Blue</option>
+                <option value="B">Black</option>
+                <option value="R">Red</option>
+                <option value="G">Green</option>
+            </select>
+            <select id="type-filter">
+                <option value="">Any Type</option>
+                <option value="Creature">Creature</option>
+                <option value="Instant">Instant</option>
+                <option value="Sorcery">Sorcery</option>
+                <!-- Add more types -->
+            </select>
+            <button id="apply-filters">Apply Filters</button>
+        </div>
+
+        <!-- Card Display -->
+        <div class="card-grid" id="card-container"></div>
+
+        <!-- Cube Section -->
+        <div class="cube-section">
+            <h2>Your Cube (0 cards)</h2>
+            <div class="cube-cards" id="cube-container"></div>
+            <button id="save-cube">Save Cube</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
